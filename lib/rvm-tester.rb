@@ -12,6 +12,8 @@ module RVM
         yield(runner) if block_given?
         desc "Runs tests across RVM Rubies: #{runner.rubies.join(",")}"
         task(name) { exit runner.run }
+        desc "Installs dependencies in Gemfile using Bundler for #{name}"
+        task("#{name}:deps") { runner.use_gemfile }
       end
     end
 
