@@ -75,4 +75,4 @@ spawn worker processes.
 
 ## License & Copyright
 
-MobSpawner is licensed under the MIT license, &copy; 2012 Loren Segal
+RVM Tester is licensed under the MIT license, &copy; 2012 Loren Segal
