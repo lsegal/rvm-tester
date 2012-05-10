@@ -24,6 +24,7 @@ module RVM
       attr_accessor :command
       attr_accessor :verbose
       attr_accessor :bundle_install
+      attr_accessor :use_travis
 
       def initialize(opts = {})
         super()
@@ -33,7 +34,9 @@ module RVM
         self.rubies = []
         self.verbose = false
         self.bundle_install = true
+        self.use_travis = true
         opts.each {|k,v| meth = "#{k}="; send(meth, v) if respond_to?(meth) }
+        load_travis_opts if use_travis
       end
 
       def run
@@ -44,7 +47,6 @@ module RVM
           MobSpawner::Command.new(
             :command => "rvm #{ruby} do #{command}",
             :env => env, :data => {:ruby => ruby, :time => nil})
-          
         end
         spawner = MobSpawner.new
         spawner.commands = commands
@@ -100,6 +102,21 @@ module RVM
         end
         MobSpawner.new(cmds).run
         puts "Done."
+      end
+
+      def load_travis_opts
+        return unless File.file?(".travis.yml")
+        debug "Loading options from .travis.yml file"
+        require 'yaml'
+        yaml = YAML.load_file(".travis.yml")
+        self.rubies = yaml['rvm'] if yaml['rvm']
+        self.command = yaml['script'] if yaml['script']
+        [yaml['env']].flatten.compact.each do |envvar|
+          envvar.split(/\s+/).each do |subvar|
+            key, value = *subvar.split("=")
+            self.env[key] = value
+          end
+        end
       end
 
       def debug(info)
