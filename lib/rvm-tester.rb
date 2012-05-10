@@ -4,7 +4,7 @@ require 'mob_spawner'
 
 module RVM
   module Tester
-    VERSION = '1.0.0'
+    VERSION = '1.1.0'
 
     class TesterTask < ::Rake::TaskLib
       def initialize(name = :suite)
