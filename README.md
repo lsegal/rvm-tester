@@ -7,7 +7,20 @@ installed the necessary Ruby installations under RVM.
 ## Installing
 
 In addition to installing this library with `gem install rvm-tester`, you will also need
-to setup
+to setup RVM with the proper Ruby installations. RVM documentation can help with this,
+but a simple command to install 1.8.7 would be:
+
+    $ rvm install 1.8.7
+
+If you have a Gemfile and use the "bundle_install" setting in RVM tester (on by
+default), rvm-tester will also install the gem dependencies for your project before
+running the tests. If you do not use Bundler, you will have to make sure that each
+environment has the correct gems installed prior to testing. You can do this with
+the following command:
+
+    $ rvm all do gem install gem1 gem2 gem3 ...
+
+Where "gem1 gem2 gem3 ..." are the dependencies needed by your project.
 
 ## Usage
 
