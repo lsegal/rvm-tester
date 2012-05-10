@@ -57,7 +57,7 @@ runner.run
 
 ## Dependencies
 
-This library depends on [RVM](http://rvm.beginrescueend.com) to control
+This library depends on [RVM](http://rvm.io) to control
 Ruby installations and [mob_spawner](http://github.com/lsegal/mob_spawner) to
 spawn worker processes.
 
