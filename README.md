@@ -42,7 +42,19 @@ RVM::Tester::TesterTask.new(:suite) do |t|
 end
 ```
 
-And simply run the task with `rake suite`.
+And simply run the task with `rake suite`. The output will look something
+like (output with `verbose=false`):
+
+```plain
+Installing Bundler and dependencies on 1.8.6,1.8.7,1.9.2,1.9.3...
+Tests passed in 1.9.3 (1527 examples, 0 failures, 18.92sec)
+Tests failed in 1.9.2 (1527 examples, 5 failures, 20.29sec)
+Tests passed in 1.8.6 (1527 examples, 0 failures, 20.26sec)
+Tests passed in 1.8.7 (1527 examples, 0 failures, 20.72sec)
+
+Output for 1.9.2 (pid 11241 exit 1, cmd=rvm 1.9.2 do bundle exec rake test):
+[SOME FAILING TEST OUTPUT HERE]
+```
 
 ### Runner Class
 
